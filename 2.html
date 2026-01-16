@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>편지 내용</title>
+    <!-- 손글씨 느낌의 폰트 (나눔 펜 스크립트) 가져오기 -->
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0; /* 전체 배경색 (책상 느낌) */
+            font-family: 'Nanum Pen Script', cursive; /* 손글씨 폰트 적용 */
+        }
+
+        .letter-paper {
+            background-color: #fffbf0; /* 종이 색상 (연한 미색) */
+            width: 90%;
+            max-width: 600px;
+            padding: 40px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            position: relative;
+            
+            /* 줄 긋기 효과 (CSS 그라데이션) */
+            background-image: linear-gradient(#999 1px, transparent 1px);
+            background-size: 100% 40px; /* 40px 간격으로 줄 그음 */
+            line-height: 40px; /* 글자 줄 간격도 40px로 맞춰서 줄 위에 글씨가 오게 함 */
+        }
+
+        /* 편지 내용 스타일 */
+        .content {
+            font-size: 28px; /* 손글씨라 조금 크게 */
+            color: #444;
+            margin-top: 5px; /* 줄에 맞춰 글씨 위치 미세 조정 */
+        }
+
+        .to {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .from {
+            margin-top: 40px;
+            text-align: right;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        /* 모바일 대응 */
+        @media (max-width: 600px) {
+            .letter-paper {
+                padding: 20px;
+            }
+            .content, .to, .from {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="letter-paper">
+        <div class="content">
+            <div class="to">To. 소중한 당신에게</div>
+            
+            <p>
+                안녕하세요.<br>
+                이 편지를 열어주셔서 감사합니다.<br>
+                <br>
+                이곳은 당신이 원하는 이야기를<br>
+                적을 수 있는 공간입니다.<br>
+                줄 맞춰 써진 글씨들이<br>
+                마음을 더 잘 전달해 줄 거예요.<br>
+                <br>
+                오늘 하루도 행복한 일들만<br>
+                가득하시길 바랍니다.
+            </p>
+
+            <div class="from">From. 보낸 사람 올림</div>
+        </div>
+    </div>
+
+</body>
+</html>
