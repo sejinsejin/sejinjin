@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>초대장이 도착했습니다</title>
+    <style>
+        /* 1. 전체 배경 및 배치 */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f3e5f5; /* 연한 보라색 배경 */
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        /* 2. 카드(컨테이너) 디자인 */
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            max-width: 400px;
+            width: 90%;
+            animation: float 3s ease-in-out infinite; /* 둥둥 떠있는 애니메이션 */
+        }
+
+        /* 3. 편지 봉투 아이콘 (이모지 대신 SVG 사용 가능) */
+        .envelope {
+            font-size: 80px;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        /* 4. 제목 텍스트 */
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        /* 5. 버튼 디자인 */
+        .open-btn {
+            background-color: #ff6b6b; /* 예쁜 붉은색 */
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 4px 6px rgba(255, 107, 107, 0.3);
+        }
+
+        .open-btn:hover {
+            background-color: #ff5252;
+            transform: scale(1.05); /* 마우스 올리면 살짝 커짐 */
+        }
+
+        .open-btn:active {
+            transform: scale(0.95); /* 클릭하면 살짝 눌림 */
+        }
+
+        /* 둥둥 떠있는 효과 애니메이션 키프레임 */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- 편지 봉투 아이콘 -->
+        <div class="envelope">📩</div>
+        
+        <h1>새로운 메시지가 있습니다</h1>
+        <p>아래 버튼을 눌러 내용을 확인해보세요.</p>
+
+        <!-- 클릭하면 자바스크립트 함수 실행 -->
+        <button class="open-btn" onclick="openLetter()">편지 열기</button>
+    </div>
+
+    <script>
+        function openLetter() {
+            var btn = document.querySelector('.open-btn');
+            
+            // 1. 버튼 중복 클릭 방지 (사용자가 연타하는 것 막기)
+            btn.disabled = true;
+            
+            // [수정됨] 글자가 바뀌는 코드를 삭제했습니다.
+            // btn.innerHTML = "기록 중..."; 
+            
+            // 버튼 색은 회색으로 변경하여 '눌렸다'는 표시만 남깁니다.
+            btn.style.backgroundColor = "#ccc"; 
+            btn.style.cursor = "default"; // 마우스 커서도 기본으로 변경
+
+            // ============================================================
+            // ▼ [수정할 곳 1] 아까 만든 구글 웹 앱 URL을 여기에 넣으세요 ▼
+            var scriptURL = "https://script.google.com/macros/s/AKfycbxEgRQMbOQudljkurRy6ktuqEF7tWVu0g3ztfxs1OmMz8ohlp9xp3mT9ci94_dzBl0S/exec";
+            
+            // ▼ [수정할 곳 2] 이동할 두 번째 페이지 파일명 ▼
+            // 나중에 만들 두 번째 파일 이름을 'page2.html'로 할 예정입니다.
+            var targetURL = "2.html"; 
+            // ============================================================
+
+            var data = new FormData();
+            data.append("action", "click"); // 구글 시트에 보낼 추가 정보
+
+            // 데이터 전송 시작
+            fetch(scriptURL, {
+                method: "POST",
+                body: data,
+                mode: "no-cors"
+            })
+            .then(response => {
+                console.log("기록 성공!");
+                window.location.href = targetURL; // 페이지 이동
+            })
+            .catch(error => {
+                console.error("에러 발생!", error);
+                window.location.href = targetURL; // 에러 나도 이동은 시켜줌
+            });
+        }
+    </script>
+
+</body>
+</html>
